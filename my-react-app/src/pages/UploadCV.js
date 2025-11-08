@@ -2,8 +2,25 @@ import filesImg from '../assets/files-illustration.png';   // update with your i
 import helpImg from '../assets/help-illustration.png';     // update with your image path
 import { useState } from 'react';
 
-function UploadCV() {
-  const [fileName, setFileName] = useState('');
+import { parseCV } from '../api/api';
+
+function UploadCV() {  
+  const [file, setFile] = useState(null);
+
+  console.log('env: ', process.env)
+
+  const handleFileSubmission = async (event) => {
+    event.preventDefault();
+
+    console.log('Submitting file:', file.name);
+    
+    try {
+      const response = await parseCV(file);
+      console.log('CV parsed successfully:', response);
+    } catch (error) {
+      console.error('Error parsing CV:', error);
+    }
+  }
 
   return (
     <div className="upload-page">
@@ -19,11 +36,15 @@ function UploadCV() {
               hidden
               onChange={(e) => {
                 const f = e.target.files?.[0];
-                if (f) setFileName(f.name);
+                if (f) setFile(f);
               }}
             />
             <label htmlFor="cv-input" className="btn primary">Upload Your CV</label>
-            {fileName && <p className="file-name">Selected: {fileName}</p>}
+            {file && <p className="file-name">Selected: {file.name}</p>}
+
+            {file && (
+              <button className="btn primary" onClick={handleFileSubmission}> Continue </button>
+            )}
           </section>
 
           {/* Info Section */}
