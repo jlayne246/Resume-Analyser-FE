@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import UploadCV from './pages/UploadCV';
 import About from './pages/About';
+import UserForm from "./pages/UserForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Link to="/"><button className="navButtons">Home Page</button></Link>
             <Link to="/upload"><button className="navButtons">Upload CV</button></Link>
             <Link to="/about"><button className="navButtons">About Us</button></Link>
+            
         </div>
       </header>
 
@@ -29,6 +31,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/upload" element={<UploadCV />} />
               <Route path="/about" element={<About />} />
+              <Route path="/user" element={<UserForm />} />
             </Routes>
         </div>
       </div>
@@ -38,3 +41,5 @@ function App() {
 }
 
 export default App;
+
+
