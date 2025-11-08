@@ -19,6 +19,7 @@ function UploadCV() {
       console.log('CV parsed successfully:', response);
     } catch (error) {
       console.error('Error parsing CV:', error);
+      window.alert('Failed to upload CV. Please try again.');
     }
   }
 
