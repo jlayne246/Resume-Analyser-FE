@@ -1,11 +1,13 @@
 import filesImg from '../assets/files-illustration.png';   // update with your image path
 import helpImg from '../assets/help-illustration.png';     // update with your image path
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { parseCV } from '../api/api';
 
 function UploadCV() {  
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   console.log('env: ', process.env)
 
@@ -17,6 +19,7 @@ function UploadCV() {
     try {
       const response = await parseCV(file);
       console.log('CV parsed successfully:', response);
+      navigate('/user');
     } catch (error) {
       console.error('Error parsing CV:', error);
       window.alert('Failed to upload CV. Please try again.');

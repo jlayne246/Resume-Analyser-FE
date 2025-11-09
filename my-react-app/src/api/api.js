@@ -11,10 +11,24 @@ export async function parseCV(file) {
     const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/resumes/parse`, {
         method: 'POST',
         body: formData,
+        credentials: "include",
     });
 
     if (!response.ok) {
         throw new Error('Failed to upload CV');
+    }
+
+    return response.json();
+}
+
+export async function retrieveCVData(){
+    const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/resumes/get`, {
+        method: 'GET',
+        credentials: "include",
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to retrieve CV data');
     }
 
     return response.json();
