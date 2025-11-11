@@ -16,20 +16,90 @@ function UserForm() {
     },
   ]);
 
+  // NEW dynamic sections
+  const [education, setEducation] = useState([
+    {
+      institution: '',
+      major: '',
+      start_date: '',
+      end_date: '',
+      degree: '',
+      minor: '',
+      gpa: '',
+      description: '',
+      relevant_coursework: '',
+    },
+  ]);
+  const [publications, setPublications] = useState([
+    { title: '', publisher: '', date: '', url: '' },
+  ]);
+  const [awards, setAwards] = useState(['']);
+  const [certifications, setCertifications] = useState(['']);
+  const [references, setReferences] = useState([
+    { name: '', title: '', company: '', mobile: '', email: '', organization: '', phone: '' },
+  ]);
+
   useEffect(() => {
     const fetchCVData = async () => {
       try {
         const data = await retrieveCVData();
         setCvData(data);
+
         setSoftSkills(data?.soft_skills || []);
         setHardSkills(data?.hard_skills || []);
+
         setWorkExperiences(
           (data?.work_experience || []).map(exp => ({
             ...exp,
             start_date: normalizeMonthValue(exp.start_date),
             end_date: normalizeMonthValue(exp.end_date),
+            work_description: exp.description || exp.work_description || '',
+            work_location: exp.location || exp.work_location || '',
           }))
         );
+
+        // initialize education
+        setEducation(
+          (data?.education || []).map(ed => ({
+            institution: ed.institution || '',
+            major: ed.major || '',
+            start_date: normalizeMonthValue(ed.start_date),
+            end_date: normalizeMonthValue(ed.end_date),
+            degree: ed.degree || '',
+            minor: ed.minor || '',
+            gpa: ed.gpa || '',
+            description: ed.description || '',
+            relevant_coursework: (ed.relevant_coursework && ed.relevant_coursework.join ? ed.relevant_coursework.join(', ') : ed.relevant_coursework || ''),
+          }))
+        );
+
+        // publications
+        setPublications(
+          (data?.publications || []).map(pub => ({
+            title: pub.title || '',
+            publisher: pub.publisher || '',
+            date: normalizeMonthValue(pub.date),
+            url: pub.url || '',
+          }))
+        );
+
+        // awards & certifications as simple arrays of strings
+        setAwards(data?.awards && data.awards.length ? data.awards : ['']);
+        setCertifications(data?.certifications && data.certifications.length ? data.certifications : ['']);
+
+        // references
+        setReferences(
+          (data?.references || []).map(ref => ({
+            name: ref.name || '',
+            title: ref.title || '',
+            company: ref.company || '',
+            mobile: ref.mobile || '',
+            email: ref.email || '',
+            organization: ref.organization || '',
+            phone: ref.phone || '',
+          }))
+        );
+
       } catch (error) {
         console.error('Error fetching CV data:', error);
       }
@@ -54,7 +124,7 @@ function UserForm() {
     setHardSkills(values);
   };
 
-  // 🧩 Work Experience dynamic handlers
+  // ---------------- Work Experience handlers ----------------
   const handleWorkChange = (index, field, value) => {
     const updated = [...workExperiences];
     updated[index][field] = value;
@@ -77,7 +147,112 @@ function UserForm() {
 
   const removeWorkExperience = (index) => {
     const updated = workExperiences.filter((_, i) => i !== index);
-    setWorkExperiences(updated);
+    setWorkExperiences(updated.length ? updated : [{
+      company: '',
+      title: '',
+      start_date: '',
+      end_date: '',
+      work_description: '',
+      work_location: '',
+    }]);
+  };
+
+  // ---------------- Education handlers ----------------
+  const handleEducationChange = (index, field, value) => {
+    const updated = [...education];
+    updated[index][field] = value;
+    setEducation(updated);
+  };
+
+  const addEducation = () => {
+    setEducation([
+      ...education,
+      {
+        institution: '',
+        major: '',
+        start_date: '',
+        end_date: '',
+        degree: '',
+        minor: '',
+        gpa: '',
+        description: '',
+        relevant_coursework: '',
+      },
+    ]);
+  };
+
+  const removeEducation = (index) => {
+    const updated = education.filter((_, i) => i !== index);
+    setEducation(updated.length ? updated : [{
+      institution: '',
+      major: '',
+      start_date: '',
+      end_date: '',
+      degree: '',
+      minor: '',
+      gpa: '',
+      description: '',
+      relevant_coursework: '',
+    }]);
+  };
+
+  // ---------------- Publications handlers ----------------
+  const handlePublicationChange = (index, field, value) => {
+    const updated = [...publications];
+    updated[index][field] = value;
+    setPublications(updated);
+  };
+
+  const addPublication = () => {
+    setPublications([...publications, { title: '', publisher: '', date: '', url: '' }]);
+  };
+
+  const removePublication = (index) => {
+    const updated = publications.filter((_, i) => i !== index);
+    setPublications(updated.length ? updated : [{ title: '', publisher: '', date: '', url: '' }]);
+  };
+
+  // ---------------- Awards handlers (simple strings) ----------------
+  const updateAward = (index, value) => {
+    const copy = [...awards];
+    copy[index] = value;
+    setAwards(copy);
+  };
+  const addAward = () => setAwards([...awards, '']);
+  const removeAward = (index) => {
+    const copy = awards.filter((_, i) => i !== index);
+    setAwards(copy.length ? copy : ['']);
+  };
+
+  // ---------------- Certifications handlers (simple strings) ----------------
+  const updateCertification = (index, value) => {
+    const copy = [...certifications];
+    copy[index] = value;
+    setCertifications(copy);
+  };
+  const addCertification = () => setCertifications([...certifications, '']);
+  const removeCertification = (index) => {
+    const copy = certifications.filter((_, i) => i !== index);
+    setCertifications(copy.length ? copy : ['']);
+  };
+
+  // ---------------- References handlers ----------------
+  const handleReferenceChange = (index, field, value) => {
+    const updated = [...references];
+    updated[index][field] = value;
+    setReferences(updated);
+  };
+
+  const addReference = () => {
+    setReferences([
+      ...references,
+      { name: '', title: '', company: '', mobile: '', email: '', organization: '', phone: '' },
+    ]);
+  };
+
+  const removeReference = (index) => {
+    const updated = references.filter((_, i) => i !== index);
+    setReferences(updated.length ? updated : [{ name: '', title: '', company: '', mobile: '', email: '', organization: '', phone: '' }]);
   };
 
   function normalizeMonthValue(value) {
@@ -94,10 +269,56 @@ function UserForm() {
     return "";
   }
 
+  // Form submit — you can expand this to gather whole object and send it
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const output = {
+      ...cvData,
+      soft_skills: softSkills,
+      hard_skills: hardSkills,
+      work_experience: workExperiences,
+      education,
+      publications,
+      awards,
+      certifications,
+      references,
+    };
+    console.log('FORM OUTPUT:', output);
+    alert('Form JSON output logged to console.');
+  };
+
+  // unified button styles
+  const addBtnStyle = {
+    background: '#16a34a', // green
+    color: 'white',
+    border: 'none',
+    borderRadius: '6px',
+    padding: '6px 12px',
+    cursor: 'pointer',
+  };
+  const removeBtnStyle = {
+    background: '#dc2626', // red
+    color: 'white',
+    border: 'none',
+    borderRadius: '6px',
+    padding: '6px 12px',
+    cursor: 'pointer',
+  };
+  const submitBtnStyle = {
+    background: '#1e40af', // blue
+    color: 'white',
+    border: 'none',
+    borderRadius: '6px',
+    padding: '8px 16px',
+    cursor: 'pointer',
+  };
+
+  // small helper for default sections
+  const sectionBoxStyle = { border: '1px solid #ccc', padding: '10px', marginBottom: '10px', borderRadius: '8px' };
 
   return (
     <div className="userform-page">
-      <form className="user-form">
+      <form className="user-form" onSubmit={handleSubmit}>
         <h2>Personal Information</h2>
         <label>First Name:</label>
         <input type="text" name="first_name" defaultValue={cvData?.first_name || ''} /><br />
@@ -152,18 +373,10 @@ function UserForm() {
           onChange={handleHardChange}
         /><br />
 
-        {/* ✅ Work Experience Section (Dynamic) */}
+        {/* Work Experience */}
         <h3>Work Experience</h3>
         {workExperiences.map((exp, index) => (
-          <div
-            key={index}
-            style={{
-              border: '1px solid #ccc',
-              padding: '10px',
-              marginBottom: '10px',
-              borderRadius: '8px',
-            }}
-          >
+          <div key={index} style={sectionBoxStyle}>
             <label>Company:</label>
             <input
               type="text"
@@ -211,67 +424,65 @@ function UserForm() {
               onChange={(e) => handleWorkChange(index, 'work_location', e.target.value)}
             /><br />
 
-            <button
-              type="button"
-              onClick={() => removeWorkExperience(index)}
-              style={{
-                background: 'red',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '5px 10px',
-                marginTop: '5px',
-              }}
-            >
-              Remove
-            </button>
+            <div style={{ marginTop: 6 }}>
+              <button
+                type="button"
+                onClick={() => removeWorkExperience(index)}
+                style={removeBtnStyle}
+              >
+                Remove
+              </button>
+            </div>
           </div>
         ))}
 
         <button
           type="button"
           onClick={addWorkExperience}
-          style={{
-            background: 'green',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            padding: '6px 12px',
-            marginBottom: '20px',
-          }}
+          style={{ ...addBtnStyle, marginBottom: '20px' }}
         >
           + Add Another Experience
         </button>
 
-        {/* The rest of your form below remains unchanged */}
+        {/* Education (dynamic) */}
         <h3>Education</h3>
-        <label>Institution:</label>
-        <input type="text" name="institution" /><br />
+        {education.map((ed, index) => (
+          <div key={index} style={sectionBoxStyle}>
+            <label>Institution:</label>
+            <input type="text" value={ed.institution} onChange={(e) => handleEducationChange(index, 'institution', e.target.value)} /><br />
 
-        <label>Major:</label>
-        <input type="text" name="major" /><br />
+            <label>Major:</label>
+            <input type="text" value={ed.major} onChange={(e) => handleEducationChange(index, 'major', e.target.value)} /><br />
 
-        <label>Start Date:</label>
-        <input type="month" name="edu_start" /><br />
+            <label>Start Date:</label>
+            <input type="month" value={ed.start_date} onChange={(e) => handleEducationChange(index, 'start_date', e.target.value)} /><br />
 
-        <label>End Date:</label>
-        <input type="month" name="edu_end" /><br />
+            <label>End Date:</label>
+            <input type="month" value={ed.end_date} onChange={(e) => handleEducationChange(index, 'end_date', e.target.value)} /><br />
 
-        <label>Degree:</label>
-        <input type="text" name="degree" /><br />
+            <label>Degree:</label>
+            <input type="text" value={ed.degree} onChange={(e) => handleEducationChange(index, 'degree', e.target.value)} /><br />
 
-        <label>Minor:</label>
-        <input type="text" name="minor" /><br />
+            <label>Minor:</label>
+            <input type="text" value={ed.minor} onChange={(e) => handleEducationChange(index, 'minor', e.target.value)} /><br />
 
-        <label>GPA:</label>
-        <input type="text" name="gpa" /><br />
+            <label>GPA:</label>
+            <input type="text" value={ed.gpa} onChange={(e) => handleEducationChange(index, 'gpa', e.target.value)} /><br />
 
-        <label>Description:</label>
-        <textarea name="edu_description"></textarea><br />
+            <label>Description:</label>
+            <textarea value={ed.description} onChange={(e) => handleEducationChange(index, 'description', e.target.value)}></textarea><br />
 
-        <label>Relevant Coursework:</label>
-        <input type="text" name="relevant_coursework" /><br />
+            <label>Relevant Coursework:</label>
+            <input type="text" value={ed.relevant_coursework} onChange={(e) => handleEducationChange(index, 'relevant_coursework', e.target.value)} /><br />
 
+            <div style={{ marginTop: 6 }}>
+              <button type="button" onClick={() => addEducation()} style={{ ...addBtnStyle, marginRight: 8 }}>Add education</button>
+              {education.length > 1 && <button type="button" onClick={() => removeEducation(index)} style={removeBtnStyle}>Remove</button>}
+            </div>
+          </div>
+        ))}
+
+        {/* Volunteer Experience (unchanged) */}
         <h3>Volunteer Experience</h3>
         <label>Organization:</label>
         <input type="text" name="organization" /><br />
@@ -291,49 +502,83 @@ function UserForm() {
         <label>Location:</label>
         <input type="text" name="volunteer_location" /><br />
 
+        {/* Awards (dynamic simple strings) */}
         <h3>Awards</h3>
-        <input type="text" name="awards" placeholder="Award Name" /><br />
+        {awards.map((a, idx) => (
+          <div key={idx} style={{ marginBottom: 8 }}>
+            <input type="text" value={a} onChange={(e) => updateAward(idx, e.target.value)} placeholder="Award name" />
+            <button type="button" onClick={() => addAward()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add award</button>
+            {awards.length > 1 && <button type="button" onClick={() => removeAward(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
+          </div>
+        ))}
 
+        {/* Publications (dynamic) */}
         <h3>Publications</h3>
-        <label>Title:</label>
-        <input type="text" name="pub_title" /><br />
+        {publications.map((p, index) => (
+          <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
+            <label>Title:</label>
+            <input type="text" value={p.title} onChange={(e) => handlePublicationChange(index, 'title', e.target.value)} /><br />
 
-        <label>Publisher:</label>
-        <input type="text" name="pub_publisher" /><br />
+            <label>Publisher:</label>
+            <input type="text" value={p.publisher} onChange={(e) => handlePublicationChange(index, 'publisher', e.target.value)} /><br />
 
-        <label>Date:</label>
-        <input type="month" name="pub_date" /><br />
+            <label>Date:</label>
+            <input type="month" value={p.date} onChange={(e) => handlePublicationChange(index, 'date', e.target.value)} /><br />
 
-        <label>URL:</label>
-        <input type="url" name="pub_url" /><br />
+            <label>URL:</label>
+            <input type="url" value={p.url} onChange={(e) => handlePublicationChange(index, 'url', e.target.value)} /><br />
 
+            <div style={{ marginTop: 6 }}>
+              <button type="button" onClick={() => addPublication()} style={{ ...addBtnStyle, marginRight: 8 }}>Add publication</button>
+              {publications.length > 1 && <button type="button" onClick={() => removePublication(index)} style={removeBtnStyle}>Remove</button>}
+            </div>
+          </div>
+        ))}
+
+        {/* Certifications (dynamic strings) */}
         <h3>Certifications</h3>
-        <input type="text" name="certifications" placeholder="Certification Name" /><br />
+        {certifications.map((c, idx) => (
+          <div key={idx} style={{ marginBottom: 8 }}>
+            <input type="text" value={c} onChange={(e) => updateCertification(idx, e.target.value)} placeholder="Certification name" />
+            <button type="button" onClick={() => addCertification()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add cert</button>
+            {certifications.length > 1 && <button type="button" onClick={() => removeCertification(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
+          </div>
+        ))}
 
+        {/* References (dynamic) */}
         <h3>References</h3>
-        <label>Name:</label>
-        <input type="text" name="ref_name" /><br />
+        {references.map((r, index) => (
+          <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
+            <label>Name:</label>
+            <input type="text" value={r.name} onChange={(e) => handleReferenceChange(index, 'name', e.target.value)} /><br />
 
-        <label>Title:</label>
-        <input type="text" name="ref_title" /><br />
+            <label>Title:</label>
+            <input type="text" value={r.title} onChange={(e) => handleReferenceChange(index, 'title', e.target.value)} /><br />
 
-        <label>Company:</label>
-        <input type="text" name="ref_company" /><br />
+            <label>Company:</label>
+            <input type="text" value={r.company} onChange={(e) => handleReferenceChange(index, 'company', e.target.value)} /><br />
 
-        <label>Mobile:</label>
-        <input type="tel" name="ref_mobile" /><br />
+            <label>Mobile:</label>
+            <input type="tel" value={r.mobile} onChange={(e) => handleReferenceChange(index, 'mobile', e.target.value)} /><br />
 
-        <label>Email:</label>
-        <input type="email" name="ref_email" /><br />
+            <label>Email:</label>
+            <input type="email" value={r.email} onChange={(e) => handleReferenceChange(index, 'email', e.target.value)} /><br />
 
-        <label>Organization:</label>
-        <input type="text" name="ref_organization" /><br />
+            <label>Organization:</label>
+            <input type="text" value={r.organization} onChange={(e) => handleReferenceChange(index, 'organization', e.target.value)} /><br />
 
-        <label>Phone:</label>
-        <input type="tel" name="ref_phone" /><br />
+            <label>Phone:</label>
+            <input type="tel" value={r.phone} onChange={(e) => handleReferenceChange(index, 'phone', e.target.value)} /><br />
+
+            <div style={{ marginTop: 6 }}>
+              <button type="button" onClick={() => addReference()} style={{ ...addBtnStyle, marginRight: 8 }}>Add reference</button>
+              {references.length > 1 && <button type="button" onClick={() => removeReference(index)} style={removeBtnStyle}>Remove</button>}
+            </div>
+          </div>
+        ))}
 
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" style={submitBtnStyle}>Submit</button>
       </form>
     </div>
   );
