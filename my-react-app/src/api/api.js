@@ -33,3 +33,19 @@ export async function retrieveCVData(){
 
     return response.json();
 }
+
+export async function updateCV(data) {
+    console.log('Uploading CV to:', process.env.REACT_APP_LOCAL_BACKEND_URL);
+
+    const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/resumes/update`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        credentials: "include",
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to upload CV');
+    }
+
+    return response.json();
+}

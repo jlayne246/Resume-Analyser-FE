@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { retrieveCVData } from '../api/api';
+import { retrieveCVData, updateCV } from '../api/api';
 
 function UserForm() {
   const [cvData, setCvData] = useState(null);
@@ -129,6 +129,13 @@ function UserForm() {
 
     fetchCVData();
   }, []);
+
+  const handleFieldChange = (e) => {
+    const { name, value } = e.target;
+    console.log('Field change:', name, value);
+    setCvData(prev => ({ ...prev, [name]: value }));
+  };
+
 
   const handleSoftChange = (e) => {
     const values = e.target.value
@@ -329,7 +336,7 @@ function UserForm() {
   }
 
   // Form submit — you can expand this to gather whole object and send it
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const output = {
       ...cvData,
@@ -343,7 +350,15 @@ function UserForm() {
       references,
     };
     console.log('FORM OUTPUT:', output);
-    alert('Form JSON output logged to console.');
+
+    try {
+      const response = await updateCV(output);
+      console.log('CV updated successfully:', response);
+      alert('CV updated successfully.');
+    } catch (error) {
+      console.error('Error parsing CV:', error);
+      alert('Failed to update CV. Please try again.');
+    }
   };
 
   // unified button styles
@@ -380,38 +395,57 @@ function UserForm() {
       <form className="user-form" onSubmit={handleSubmit}>
         <h2>Personal Information</h2>
         <label>First Name:</label>
-        <input type="text" name="first_name" defaultValue={cvData?.first_name || ''} /><br />
+        <input type="text" name="first_name" value={cvData?.first_name || ''} onChange={handleFieldChange} /><br />
 
         <label>Last Name:</label>
-        <input type="text" name="last_name" defaultValue={cvData?.last_name || ''} /><br />
+        <input type="text" name="last_name" value={cvData?.last_name || ''} onChange={handleFieldChange} /><br />
 
         <label>Email:</label>
-        <input type="email" name="email" defaultValue={cvData?.email || ''} /><br />
+        <input type="email" name="email" value={cvData?.email || ''} onChange={handleFieldChange} /><br />
 
         <label>Phone:</label>
-        <input type="tel" name="phone" defaultValue={cvData?.phone || ''} /><br />
+        <input type="tel" name="phone" value={cvData?.phone || ''} onChange={handleFieldChange} /><br />
 
         <label>Address:</label>
-        <input type="text" name="address" defaultValue={cvData?.address || ''} /><br />
+        <input type="text" name="address" value={cvData?.address || ''} onChange={handleFieldChange} /><br />
 
         <label>Objective:</label>
-        <textarea name="objective" defaultValue={cvData?.objective || ''}></textarea><br />
+        <textarea name="objective" value={cvData?.objective || ''} onChange={handleFieldChange}></textarea><br />
 
         <label>Summary:</label>
-        <textarea name="summary" defaultValue={cvData?.summary || ''}></textarea><br />
+        <textarea name="summary" value={cvData?.summary || ''} onChange={handleFieldChange}></textarea><br />
 
         <h3>Links</h3>
         <label>LinkedIn:</label>
-        <input type="url" name="linkedin" defaultValue={cvData?.links?.linkedin || ''} /><br />
-
+        <input type="url" name="linkedin" value={cvData?.links?.linkedin || ''} onChange={(e) =>
+          setCvData(prev => ({
+            ...prev,
+            links: { ...prev.links, linkedin: e.target.value },
+          }))
+        } /><br />
         <label>Personal Website:</label>
-        <input type="url" name="personal_website" defaultValue={cvData?.links?.personal_website || ''} /><br />
+        <input type="url" name="personal_website" value={cvData?.links?.personal_website || ''} onChange={(e) =>
+          setCvData(prev => ({
+            ...prev,
+            links: { ...prev.links, personal_website: e.target.value },
+          }))
+        } /><br />
 
         <label>Indeed:</label>
-        <input type="url" name="indeed" defaultValue={cvData?.links?.indeed || ''} /><br />
+        <input type="url" name="indeed" value={cvData?.links?.indeed || ''} onChange={(e) =>
+          setCvData(prev => ({
+            ...prev,
+            links: { ...prev.links, indeed: e.target.value },
+          }))
+        } /><br />
 
         <label>GitHub:</label>
-        <input type="url" name="github" defaultValue={cvData?.links?.github || ''} /><br />
+        <input type="url" name="github" value={cvData?.links?.github || ''} onChange={(e) =>
+          setCvData(prev => ({
+            ...prev,
+            links: { ...prev.links, github: e.target.value },
+          }))
+        } /><br />
 
         <h3>Skills</h3>
         <label>Soft Skills:</label>
@@ -419,7 +453,7 @@ function UserForm() {
           type="text"
           name="soft_skills"
           placeholder="e.g. teamwork, communication"
-          defaultValue={softSkills.join(', ')}
+          value={softSkills.join(', ')}
           onChange={handleSoftChange}
         /><br />
 
@@ -428,7 +462,7 @@ function UserForm() {
           type="text"
           name="hard_skills"
           placeholder="e.g. Excel, Python, React"
-          defaultValue={hardSkills.join(', ')}
+          value={hardSkills.join(', ')}
           onChange={handleHardChange}
         /><br />
 
