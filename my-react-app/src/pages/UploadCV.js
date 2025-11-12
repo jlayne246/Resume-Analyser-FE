@@ -2,17 +2,21 @@ import filesImg from '../assets/files-illustration.png';   // update with your i
 import helpImg from '../assets/help-illustration.png';     // update with your image path
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import '../styles/UploadCV.css';
 
 import { parseCV } from '../api/api';
 
 function UploadCV() {  
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   console.log('env: ', process.env)
 
   const handleFileSubmission = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     console.log('Submitting file:', file.name);
     
@@ -23,6 +27,8 @@ function UploadCV() {
     } catch (error) {
       console.error('Error parsing CV:', error);
       window.alert('Failed to upload CV. Please try again.');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -49,6 +55,13 @@ function UploadCV() {
             {file && (
               <button className="btn primary" onClick={handleFileSubmission}> Continue </button>
             )}
+
+            {loading && (
+              <div className="spinner-container">
+                <div className="spinner"></div>
+              </div>
+            )}
+
           </section>
 
           {/* Info Section */}

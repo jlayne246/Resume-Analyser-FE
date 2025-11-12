@@ -30,6 +30,16 @@ function UserForm() {
       relevant_coursework: '',
     },
   ]);
+  const [volunteerExperiences, setVolunteerExperiences] = useState([
+    {
+      company: '',
+      title: '',
+      start_date: '',
+      end_date: '',
+      work_description: '',
+      work_location: '',
+    },
+  ]);
   const [publications, setPublications] = useState([
     { title: '', publisher: '', date: '', url: '' },
   ]);
@@ -70,6 +80,18 @@ function UserForm() {
             gpa: ed.gpa || '',
             description: ed.description || '',
             relevant_coursework: (ed.relevant_coursework && ed.relevant_coursework.join ? ed.relevant_coursework.join(', ') : ed.relevant_coursework || ''),
+          }))
+        );
+
+        console.log(data?.volunteer_experience)
+
+        setVolunteerExperiences(
+          (data?.volunteer_experience || []).map(exp => ({
+            ...exp,
+            start_date: normalizeMonthValue(exp.start_date),
+            end_date: normalizeMonthValue(exp.end_date),
+            description: exp.description || '',
+            location: exp.location || '',
           }))
         );
 
@@ -196,6 +218,39 @@ function UserForm() {
     }]);
   };
 
+  // ---------------- Volunteer Experience handlers ----------------
+  const handleVolunteerChange = (index, field, value) => {
+    const updated = [...volunteerExperiences];
+    updated[index][field] = value;
+    setVolunteerExperiences(updated);
+  };
+
+  const addVolunteerExperience = () => {
+    setVolunteerExperiences([
+      ...volunteerExperiences,
+      {
+        organization: '',
+        title: '',
+        start_date: '',
+        end_date: '',
+        description: '',
+        location: '',
+      },
+    ]);
+  };
+
+  const removeVolunteerExperience = (index) => {
+    const updated = volunteerExperiences.filter((_, i) => i !== index);
+    setVolunteerExperiences(updated.length ? updated : [{
+      company: '',
+      title: '',
+      start_date: '',
+      end_date: '',
+      description: '',
+      location: '',
+    }]);
+  };
+
   // ---------------- Publications handlers ----------------
   const handlePublicationChange = (index, field, value) => {
     const updated = [...publications];
@@ -265,6 +320,10 @@ function UserForm() {
       const monthIndex = new Date(`${monthName} 1, ${year}`).getMonth() + 1;
       return `${year}-${String(monthIndex).padStart(2, "0")}`;
     }
+    // Year only (e.g. "2024")
+    if (/^\d{4}$/.test(value)) {
+      return `${value}-01`; // default to January
+    }
     // For "Present" or invalid text
     return "";
   }
@@ -332,8 +391,8 @@ function UserForm() {
         <label>Phone:</label>
         <input type="tel" name="phone" defaultValue={cvData?.phone || ''} /><br />
 
-        <label>Location:</label>
-        <input type="text" name="location" defaultValue={cvData?.location || ''} /><br />
+        <label>Address:</label>
+        <input type="text" name="address" defaultValue={cvData?.address || ''} /><br />
 
         <label>Objective:</label>
         <textarea name="objective" defaultValue={cvData?.objective || ''}></textarea><br />
@@ -482,25 +541,77 @@ function UserForm() {
           </div>
         ))}
 
-        {/* Volunteer Experience (unchanged) */}
+        {/* Volunteer Experience */}
         <h3>Volunteer Experience</h3>
-        <label>Organization:</label>
-        <input type="text" name="organization" /><br />
+        {volunteerExperiences.map((vol, index) => (
+          <div key={index} style={sectionBoxStyle}>
+            <label>Organization:</label>
+            <input
+              type="text"
+              name="organization"
+              value={vol.organization}
+              onChange={(e) => handleVolunteerChange(index, 'organization', e.target.value)}
+            /><br />
 
-        <label>Title:</label>
-        <input type="text" name="volunteer_title" /><br />
+            <label>Title:</label>
+            <input
+              type="text"
+              name="volunteer_title"
+              value={vol.title}
+              onChange={(e) => handleVolunteerChange(index, 'volunteer_title', e.target.value)}
+            /><br />
 
-        <label>Start Date:</label>
-        <input type="month" name="volunteer_start" /><br />
+            <label>Start Date:</label>
+            <input
+              type="month"
+              name="volunteer_start"
+              value={vol.start_date}
+              onChange={(e) => handleVolunteerChange(index, 'volunteer_start', e.target.value)}
+            /><br />
 
-        <label>End Date:</label>
-        <input type="month" name="volunteer_end" /><br />
+            <label>End Date:</label>
+            <input
+              type="month"
+              name="volunteer_end"
+              value={vol.end_date}
+              onChange={(e) => handleVolunteerChange(index, 'volunteer_end', e.target.value)}
+            /><br />
 
-        <label>Description:</label>
-        <textarea name="volunteer_description"></textarea><br />
+            <label>Description:</label>
+            <textarea
+              name="volunteer_description"
+              value={vol.description}
+              onChange={(e) => handleVolunteerChange(index, 'volunteer_description', e.target.value)}
+            ></textarea><br />
 
-        <label>Location:</label>
-        <input type="text" name="volunteer_location" /><br />
+            <label>Location:</label>
+            <input
+              type="text"
+              name="volunteer_location"
+              value={vol.location}
+              onChange={(e) => handleVolunteerChange(index, 'volunteer_location', e.target.value)}
+            /><br />
+
+            <div style={{ marginTop: 6 }}>
+              <button
+                type="button"
+                onClick={() => removeVolunteerExperience(index)}
+                style={removeBtnStyle}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={addVolunteerExperience}
+          style={{ ...addBtnStyle, marginBottom: '20px' }}
+        >
+          + Add Another Volunteer Experience
+        </button>
+
 
         {/* Awards (dynamic simple strings) */}
         <h3>Awards</h3>
