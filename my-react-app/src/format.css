@@ -1,158 +1,94 @@
-#Header{
+#img-title {
 
-    display: flex;
-    flex-direction: row;
-    border-style: solid;
-    border-width: medium;
-    border-color: rgb(25, 0, 255);
-
-}
-
-#img-title{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
 
 }
 
-.logo{
+.logo {
 
-    width: 100px;
-    height: 100px;
-
-}
-
-#HeaderButtons{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 400px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: #fff;
 
 }
 
-.navButtons{
+#HeaderButtons {
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    height: fit-content;
-    width: fit-content;
-    padding: 5px;
-}
-
-header{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 400px;
 
 }
 
-#Main{
+.navButtons {
 
-    border-style: solid;
-    border-width: medium;
-    border-color: black;
-    background-color: white;
-    
-    display: flex;
-    flex-direction: column;
-    
-    align-content: center;
-    width: 1200px;
-    min-height: 100vh;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+}
+
+header {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: medium;
+  border-color: #1900ff;
+  background-color: #5fa8d3;
+  padding: 20px;
 
 }
 
-#Body{
+#Body {
 
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 
-    border-style: solid;
-    border-width: medium;
-    border-color: rgb(234, 0, 255);
+  border-style: solid;
+  border-width: medium;
+  border-color: #62b6cb;
 
-    height: 100hv;
-    min-height: 100hv;
-    background-image: url("./Background.png");
-
-}
-
-button{
-
-    background-color: rgb(0, 255, 115);
+  height: 100hv;
+  min-height: 100hv;
+  background-image: url("./Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 
 }
 
-body{
+#Main {
 
-    align-content: center;
-    text-align: center;
-    border-color: rgb(251, 255, 0);
-    border-width: medium;
-    border-style: solid;
-    margin: 0;
-    height: 100hv;
-min-height: 100hv;
+  border-style: solid;
+  border-width: medium;
+  border-color: black;
+  background-color: #cae9ff;
+
+  display: flex;
+  flex-direction: column;
+
+  align-content: center;
+  width: 1200px;
+  min-height: 100vh;
+  height: 100%;
+  margin: auto;
+
 }
 
-
-
-
-
-
-
-
-/* --- Upload page layout --- */
-.upload-page {
-  width: 100%;
-}
-
-.upload-bg {
-  background: none;
-  padding: 0;             /* remove padding so white box can expand fully */
-}
-
-.page-track {
-  width: 100%;
-  margin: 0 auto;
-  background: #ffffff;
-  border-left: none;      /* remove borders if you want clean full-width white area */
-  border-right: none;
-  padding: 40px 24px 60px;
-  box-sizing: border-box;
-}
-
-
-/* blue hero card */
-.upload-card {
-  max-width: 520px;
-  margin: 0 auto 56px;
-  background: #2f7ddb;              /* blue like your mockup */
-  border-radius: 12px;
-  padding: 28px 20px 32px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-}
-
-.upload-hero {
-  width: 78%;
-  max-width: 420px;
-  display: block;
-  margin: 0 auto 18px;
-}
-
-/* button */
 .btn {
   display: inline-block;
   font-weight: 600;
@@ -162,12 +98,73 @@ min-height: 100hv;
   cursor: pointer;
   transition: transform .05s ease, box-shadow .2s ease;
 }
+
 .btn.primary {
-  background: #45b2ff;
+  background: #1b4965;
   color: #fff;
 }
-.btn.primary:hover { box-shadow: 0 6px 14px rgba(69,178,255,.35); }
-.btn:active { transform: translateY(1px); }
+
+.btn.primary:hover {
+  box-shadow: 0 6px 14px rgba(27, 73, 101, .35);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+body {
+
+  align-content: center;
+  text-align: center;
+  border-color: #fbff00;
+  border-width: medium;
+  border-style: solid;
+  margin: 0;
+  height: 100hv;
+  min-height: 100hv;
+
+}
+
+/* --- Upload page layout --- */
+.upload-page {
+  width: 100%;
+}
+
+.upload-bg {
+  background: none;
+  padding: 0;
+  /* remove padding so white box can expand fully */
+}
+
+.page-track {
+  width: 100%;
+  margin: 0 auto;
+  border-left: none;
+  /* remove borders if you want clean full-width white area */
+  border-right: none;
+  padding: 40px 24px 60px;
+  box-sizing: border-box;
+}
+
+
+/* blue card */
+.upload-card {
+  max-width: 520px;
+  margin: 0 auto 56px;
+  background: #468faf;
+  /* blue like your mockup */
+  border-radius: 12px;
+  padding: 28px 20px 32px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.upload-hero {
+  width: 78%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto 18px;
+}
 
 .file-name {
   margin-top: 10px;
@@ -184,14 +181,21 @@ min-height: 100hv;
   max-width: 780px;
   margin: 0 auto;
 }
+
 .info-illustration {
   width: 180px;
   height: auto;
   justify-self: center;
 }
+
 .info-copy {
   line-height: 1.55;
-  color: #222;
+  color: #FFF;
+  background: #468faf;
+  border-radius: 12px;
+  padding: 28px 20px 32px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
 }
 
 /* responsive */
@@ -200,7 +204,10 @@ min-height: 100hv;
     grid-template-columns: 1fr;
     text-align: center;
   }
-  .info-illustration { margin-bottom: 8px; }
+
+  .info-illustration {
+    margin-bottom: 8px;
+  }
 }
 
 
@@ -208,62 +215,86 @@ min-height: 100hv;
 
 
 /* --- Home page layout --- */
-.home-wrap{
-  max-width: 950px;              /* keeps the text within your white column */
-  margin: 32px auto 56px;
+.home-wrap {
+  max-width: 950px;
+  /* keeps the text within your white column */
+  margin: 10%;
   padding: 0 24px;
-  text-align: left;              /* headings/paragraphs align left like your mock */
+  text-align: left;
+  /* headings/paragraphs align left like your mock */
 }
 
-.home-row{
-  display: grid;
-  grid-template-columns: 1fr 220px;   /* text | big icon */
-  align-items: start;
+.home-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   gap: 24px;
-  min-height: 240px;                  /* generous vertical spacing */
-  margin-bottom: 48px;
-  position: relative;
+  min-height: 240px;
+  /* generous vertical spacing */
+  margin: 5%;
+  justify-content: space-around;
+  background-color: #468faf;
+  border-radius: 12px;
+  padding: 28px 20px 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
 }
 
-.home-row.reverse{
-  grid-template-columns: 220px 1fr;   /* icon | text */
+.home-row.reverse {
+  grid-template-columns: 220px 1fr;
+  /* icon | text */
 }
 
-.home-title{
+.home-title {
   margin: 8px 0 6px;
   font-size: 18px;
   font-weight: 600;
+  color: #fff;
 }
 
-.home-copy{
+.home-copy {
   margin: 0;
   line-height: 1.55;
-  color: #222;
+  color: #fff;
 }
 
-.home-icon{
+.home-icon {
+
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FF5F1F;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  
 }
 
-.home-icon img{
-  width: 160px;         /* scale to taste */
+.home-icon img {
+  width: 160px;
+  /* scale to taste */
   height: auto;
   opacity: 0.9;
 }
 
-.home-row.reverse .home-icon{
-  align-items: center;  /* visually centered like your mid-left gear icon */
+.home-row.reverse .home-icon {
+  align-items: center;
+  /* visually centered like your mid-left gear icon */
 }
 
-@media (max-width: 720px){
+@media (max-width: 720px) {
+
   .home-row,
-  .home-row.reverse{
-    grid-template-columns: 1fr;       /* stack on mobile */
+  .home-row.reverse {
+    grid-template-columns: 1fr;
+    /* stack on mobile */
   }
-  .home-icon{
-    justify-content: flex-start;      /* keep icon near text when stacked */
+
+  .home-icon {
+    justify-content: flex-start;
+    /* keep icon near text when stacked */
   }
-  .home-icon img{ width: 120px; }
+
+  .home-icon img {
+    width: 120px;
+  }
 }

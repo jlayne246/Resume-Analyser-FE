@@ -11,31 +11,29 @@ import UserForm from "./pages/UserForm";
 function App() {
   return (
     <Router>
-    <div className="App">
-      <header>
-        <div id="img-title">
-          <img className="logo" src={logo} alt="logo" />
-          <p>Project Title</p>
-        </div>
-        <div id="HeaderButtons">
-          <Link to="/"><button className="navButtons">Home Page</button></Link>
-            <Link to="/upload"><button className="navButtons">Upload CV</button></Link>
-            <Link to="/about"><button className="navButtons">About Us</button></Link>
-            
-        </div>
-      </header>
+      <div className="App">
+        <header>
+          <div id="img-title">
+            <Link to="/"><img className="logo" src={logo} alt="logo" /></Link>
+            <p className="title">Project Title</p>
+          </div>
+          <div id="HeaderButtons">
+            <Link to="/upload"><button className="btn primary">Upload CV</button></Link>
+            <Link to="/about"><button className="btn primary">About Us</button></Link>
+          </div>
+        </header>
 
-      <div id="Body">
-        <div id="Main">
-          <Routes>
+        <div id="Body">
+          <div id="Main">
+            <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/upload" element={<UploadCV />} />
               <Route path="/about" element={<About />} />
               <Route path="/user" element={<UserForm />} />
             </Routes>
+          </div>
         </div>
       </div>
-    </div>
     </Router>
   );
 }

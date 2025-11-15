@@ -11,7 +11,10 @@ function Home() {
         <div className="home-text">
           <h3 className="home-title">The What</h3>
           <p className="home-copy">
-            Here goes the explanation of what the application is
+            This is a web application, designed to allow students to upload their CVs to be checked and evaluated to determine
+            what can be added to improve the CV. This gives the student's CV that extra polish, sure to catch the eye of recruiters 
+            looking for students with the skills and academics they need.
+
           </p>
         </div>
         <div className="home-icon right">
@@ -27,7 +30,10 @@ function Home() {
         <div className="home-text">
           <h3 className="home-title">The How</h3>
           <p className="home-copy">
-            Here goes the explanation of how the application works
+            The application works by having students upload their CVs to the web appplication, it is then sent to our back end where our
+            programmers have coded a parser using the python language to get clean data from the student's CV, using this clean data 
+            classification algorithms are used to categorize resumes based on job roles, education or skill clusters suggestions and then suggestions are 
+            generated and returned to the front-end allowing students to see the suggestions made for their resume.
           </p>
         </div>
       </section>
@@ -37,7 +43,11 @@ function Home() {
         <div className="home-text">
           <h3 className="home-title">The Why</h3>
           <p className="home-copy">
-            Here goes the explanation of why the application was developed
+            We chose this project to work on was because we noticed an upsurge in assistive tools for students, helping
+            them in their academic endeavors. We therefore set out to creating a tool helps students properly 
+            present their skills increasing job acceptance, improving the bridge between
+            student and career. We also believe that this can be used to pave the way for future student assistive technologies, improving
+            subsequent academic experiences.
           </p>
         </div>
         <div className="home-icon right">
