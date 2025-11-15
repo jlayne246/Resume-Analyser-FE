@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getRecommendations } from '../api/api';
 
 function Results() {
@@ -15,20 +15,27 @@ function Results() {
     reference_recommendation: "None provided."
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchRecommendations = async () => {
       try {
         const data = await getRecommendations();
+        console.log("Received recommendations data:", data);
+
         setScore(data.score || 0);
+        console.log("Parsed score: ", data.score || 0);
+
+        const return_recommendation = data.recommendation || {};
+        console.log("Parsed recommendation data: ", return_recommendation);
+
         setRecommendation({
-          personal_recommendation: data.personal_recommendation || "None provided.",
-          summary_recommendation: data.summary_recommendation || "None provided.",
-          skill_recommendation: data.skill_recommendation || "None provided.",
-          work_experience_recommendation: data.work_experience_recommendation || "None provided.",
-          education_recommendation: data.education_recommendation || "None provided.",
-          volunteer_experience_recommendation: data.volunteer_experience_recommendation || "None provided.",
-          recognition_recommendation: data.recognition_recommendation || "None provided.",
-          reference_recommendation: data.reference_recommendation || "None provided."
+          personal_recommendation: return_recommendation.personal_recommendation || "None provided.",
+          summary_recommendation: return_recommendation.summary_recommendation || "None provided.",
+          skill_recommendation: return_recommendation.skill_recommendation || "None provided.",
+          work_experience_recommendation: return_recommendation.work_experience_recommendation || "None provided.",
+          education_recommendation: return_recommendation.education_recommendation || "None provided.",
+          volunteer_experience_recommendation: return_recommendation.volunteer_experience_recommendation || "None provided.",
+          recognition_recommendation: return_recommendation.recognition_recommendation || "None provided.",
+          reference_recommendation: return_recommendation.reference_recommendation || "None provided."
         });
       } catch (error) {
         console.error('Error fetching recommendations:', error);
@@ -41,7 +48,7 @@ function Results() {
   return (
     <div className="results-container">
       <h1>Recommendations</h1><br></br>
-      <h2>Score: {score}</h2>
+      <h2>Score: {score} / 10</h2>
 
       <div className="field-block">
         <h2>Personal</h2>

@@ -52,7 +52,10 @@ export async function updateCV(data) {
 
 export async function submitDreamJob(career) {
     const formData = new FormData();
-    formData.append('job', career);
+    formData.append('desired_role', career);
+
+    console.log("Submitting dream job:", career);
+    console.log("FormData contents:", Array.from(formData.entries()));
     
     const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/feedback/generate`, {
         method: 'POST',

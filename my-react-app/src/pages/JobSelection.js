@@ -10,7 +10,7 @@ function JobSelection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //await submitDreamJob(career);
+      await submitDreamJob(career);
       console.log('Dream job submitted:', career);
       navigate('/results');
     } catch (error) {
