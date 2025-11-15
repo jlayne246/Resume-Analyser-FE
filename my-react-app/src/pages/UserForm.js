@@ -393,363 +393,454 @@ function UserForm() {
   return (
     <div className="userform-page">
       <form className="user-form" onSubmit={handleSubmit}>
-        <h2>Personal Information</h2>
-        <div className="pInfoForm"> 
+        <h3 className="formHeadings">Personal Information</h3>
+        <div className="InfoForm">
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>First Name:</label>
-            <input type="text" name="first_name" value={cvData?.first_name || ''} onChange={handleFieldChange} />
+            <input className="input" type="text" name="first_name" value={cvData?.first_name || ''} onChange={handleFieldChange} />
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Last Name:</label>
-            <input type="text" name="last_name" value={cvData?.last_name || ''} onChange={handleFieldChange} />
+            <input className="input" type="text" name="last_name" value={cvData?.last_name || ''} onChange={handleFieldChange} />
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Email:</label>
-            <input type="email" name="email" value={cvData?.email || ''} onChange={handleFieldChange} />
+            <input className="input" type="email" name="email" value={cvData?.email || ''} onChange={handleFieldChange} />
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Phone:</label>
-            <input type="tel" name="phone" value={cvData?.phone || ''} onChange={handleFieldChange} />
+            <input className="input" type="tel" name="phone" value={cvData?.phone || ''} onChange={handleFieldChange} />
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Address:</label>
-            <input type="text" name="address" value={cvData?.address || ''} onChange={handleFieldChange} />
+            <input className="input" type="text" name="address" value={cvData?.address || ''} onChange={handleFieldChange} />
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Objective:</label>
-            <textarea name="objective" value={cvData?.objective || ''} onChange={handleFieldChange}></textarea>
+            <textarea className="textArea" name="objective" value={cvData?.objective || ''} onChange={handleFieldChange}></textarea>
           </div>
-          <br />
 
-          <div className="pInfoFormRow">
+          <div className="FormRow">
             <label>Summary:</label>
-            <textarea name="summary" value={cvData?.summary || ''} onChange={handleFieldChange}></textarea>
+            <textarea className="textArea" name="summary" value={cvData?.summary || ''} onChange={handleFieldChange}></textarea>
           </div>
-          <br />
         </div>
 
-        <div className="pInfo">
+        <h3 className="formHeadings">Links</h3>
+
+        <div className="InfoForm">
+          <div className="FormRow">
+            <label>LinkedIn:</label>
+            <input className="input" type="url" name="linkedin" value={cvData?.links?.linkedin || ''} onChange={(e) =>
+              setCvData(prev => ({
+                ...prev,
+                links: { ...prev.links, linkedin: e.target.value },
+              }))
+            } />
+          </div>
+
+          <div className="FormRow">
+            <label>Personal Website:</label>
+            <input className="input" type="url" name="personal_website" value={cvData?.links?.personal_website || ''} onChange={(e) =>
+              setCvData(prev => ({
+                ...prev,
+                links: { ...prev.links, personal_website: e.target.value },
+              }))
+            } />
+          </div>
+
+          <div className="FormRow">
+            <label>Indeed:</label>
+            <input className="input" type="url" name="indeed" value={cvData?.links?.indeed || ''} onChange={(e) =>
+              setCvData(prev => ({
+                ...prev,
+                links: { ...prev.links, indeed: e.target.value },
+              }))
+            } />
+          </div>
+
+          <div className="FormRow">
+            <label>GitHub:</label>
+            <input className="input" type="url" name="github" value={cvData?.links?.github || ''} onChange={(e) =>
+              setCvData(prev => ({
+                ...prev,
+                links: { ...prev.links, github: e.target.value },
+              }))
+            } />
+          </div>
         </div>
-        
-        <h3>Links</h3>
-        <label>LinkedIn:</label>
-        <input type="url" name="linkedin" value={cvData?.links?.linkedin || ''} onChange={(e) =>
-          setCvData(prev => ({
-            ...prev,
-            links: { ...prev.links, linkedin: e.target.value },
-          }))
-        } /><br />
-        <label>Personal Website:</label>
-        <input type="url" name="personal_website" value={cvData?.links?.personal_website || ''} onChange={(e) =>
-          setCvData(prev => ({
-            ...prev,
-            links: { ...prev.links, personal_website: e.target.value },
-          }))
-        } /><br />
 
-        <label>Indeed:</label>
-        <input type="url" name="indeed" value={cvData?.links?.indeed || ''} onChange={(e) =>
-          setCvData(prev => ({
-            ...prev,
-            links: { ...prev.links, indeed: e.target.value },
-          }))
-        } /><br />
+        <h3 className="formHeadings">Skills</h3>
+        <div className="InfoForm">
+          <div className="FormRow">
+            <label>Soft Skills:</label>
+            <input
+              className="input" 
+              type="text"
+              name="soft_skills"
+              placeholder="e.g. teamwork, communication"
+              value={softSkills.join(', ')}
+              onChange={handleSoftChange}
+            />
+          </div>
 
-        <label>GitHub:</label>
-        <input type="url" name="github" value={cvData?.links?.github || ''} onChange={(e) =>
-          setCvData(prev => ({
-            ...prev,
-            links: { ...prev.links, github: e.target.value },
-          }))
-        } /><br />
+          <div className="FormRow">
+            <label>Hard Skills:</label>
+            <input
+              className="input" 
+              type="text"
+              name="hard_skills"
+              placeholder="e.g. Excel, Python, React"
+              value={hardSkills.join(', ')}
+              onChange={handleHardChange}
+            />
+          </div>
+        </div>
 
-        <h3>Skills</h3>
-        <label>Soft Skills:</label>
-        <input
-          type="text"
-          name="soft_skills"
-          placeholder="e.g. teamwork, communication"
-          value={softSkills.join(', ')}
-          onChange={handleSoftChange}
-        /><br />
-
-        <label>Hard Skills:</label>
-        <input
-          type="text"
-          name="hard_skills"
-          placeholder="e.g. Excel, Python, React"
-          value={hardSkills.join(', ')}
-          onChange={handleHardChange}
-        /><br />
 
         {/* Work Experience */}
-        
-        {workExperiences.map((exp, index) => (
-          <div key={index} style={sectionBoxStyle}>
-            <h3>Work Experience</h3>
-            <label>Company:</label>
-            <input
-              type="text"
-              name="company"
-              value={exp.company}
-              onChange={(e) => handleWorkChange(index, 'company', e.target.value)}
-            /><br />
+        <h3 className="formHeadings">Work Experience</h3>
+        <div className="InfoForm">
+          {workExperiences.map((exp, index) => (
+            <div key={index} style={sectionBoxStyle}>
 
-            <label>Title:</label>
-            <input
-              type="text"
-              name="title"
-              value={exp.title}
-              onChange={(e) => handleWorkChange(index, 'title', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Company:</label>
+                <input
+                  className="input" 
+                  type="text"
+                  name="company"
+                  value={exp.company}
+                  onChange={(e) => handleWorkChange(index, 'company', e.target.value)}
+                />
+              </div>
 
-            <label>Start Date:</label>
-            <input
-              type="month"
-              name="start_date"
-              value={exp.start_date}
-              onChange={(e) => handleWorkChange(index, 'start_date', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Title:</label>
+                <input
+                  className="input" 
+                  type="text"
+                  name="title"
+                  value={exp.title}
+                  onChange={(e) => handleWorkChange(index, 'title', e.target.value)}
+                />
+              </div>
 
-            <label>End Date:</label>
-            <input
-              type="month"
-              name="end_date"
-              value={exp.end_date}
-              onChange={(e) => handleWorkChange(index, 'end_date', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Start Date:</label>
+                <input
+                  className="input" 
+                  type="month"
+                  name="start_date"
+                  value={exp.start_date}
+                  onChange={(e) => handleWorkChange(index, 'start_date', e.target.value)}
+                />
+              </div>
 
-            <label>Description:</label>
-            <textarea
-              name="work_description"
-              value={exp.work_description}
-              onChange={(e) => handleWorkChange(index, 'work_description', e.target.value)}
-            ></textarea><br />
+              <div className="FormRow">
+                <label>End Date:</label>
+                <input
+                  className="input" 
+                  type="month"
+                  name="end_date"
+                  value={exp.end_date}
+                  onChange={(e) => handleWorkChange(index, 'end_date', e.target.value)}
+                />
+              </div>
 
-            <label>Location:</label>
-            <input
-              type="text"
-              name="work_location"
-              value={exp.work_location}
-              onChange={(e) => handleWorkChange(index, 'work_location', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Description:</label>
+                <textarea
+                  className="textArea"
+                  name="work_description"
+                  value={exp.work_description}
+                  onChange={(e) => handleWorkChange(index, 'work_description', e.target.value)}
+                ></textarea>
+              </div>
 
-            <div style={{ marginTop: 6 }}>
-              <button
-                type="button"
-                onClick={() => removeWorkExperience(index)}
-                style={removeBtnStyle}
-              >
-                Remove
-              </button>
+              <div className="FormRow">
+                <label>Location:</label>
+                <input
+                  className="input" 
+                  type="text"
+                  name="work_location"
+                  value={exp.work_location}
+                  onChange={(e) => handleWorkChange(index, 'work_location', e.target.value)}
+                />
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <button
+                  type="button"
+                  onClick={() => removeWorkExperience(index)}
+                  style={removeBtnStyle}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        <button
-          type="button"
-          onClick={addWorkExperience}
-          style={{ ...addBtnStyle, marginBottom: '20px' }}
-        >
-          + Add Another Experience
-        </button>
+          <button
+            type="button"
+            onClick={addWorkExperience}
+            style={{ ...addBtnStyle, marginBottom: '20px' }}
+          >
+            + Add Another Experience
+          </button>
+        </div>
 
         {/* Education (dynamic) */}
-        <h3>Education</h3>
-        {education.map((ed, index) => (
-          <div key={index} style={sectionBoxStyle}>
-            <label>Institution:</label>
-            <input type="text" value={ed.institution} onChange={(e) => handleEducationChange(index, 'institution', e.target.value)} /><br />
+        <h3 className="formHeadings">Education</h3>
+        <div className="InfoForm">
+          {education.map((ed, index) => (
+            <div key={index} style={sectionBoxStyle}>
 
-            <label>Major:</label>
-            <input type="text" value={ed.major} onChange={(e) => handleEducationChange(index, 'major', e.target.value)} /><br />
-
-            <label>Start Date:</label>
-            <input type="month" value={ed.start_date} onChange={(e) => handleEducationChange(index, 'start_date', e.target.value)} /><br />
-
-            <label>End Date:</label>
-            <input type="month" value={ed.end_date} onChange={(e) => handleEducationChange(index, 'end_date', e.target.value)} /><br />
-
-            <label>Degree:</label>
-            <input type="text" value={ed.degree} onChange={(e) => handleEducationChange(index, 'degree', e.target.value)} /><br />
-
-            <label>Minor:</label>
-            <input type="text" value={ed.minor} onChange={(e) => handleEducationChange(index, 'minor', e.target.value)} /><br />
-
-            <label>GPA:</label>
-            <input type="text" value={ed.gpa} onChange={(e) => handleEducationChange(index, 'gpa', e.target.value)} /><br />
-
-            <label>Description:</label>
-            <textarea value={ed.description} onChange={(e) => handleEducationChange(index, 'description', e.target.value)}></textarea><br />
-
-            <label>Relevant Coursework:</label>
-            <input type="text" value={ed.relevant_coursework} onChange={(e) => handleEducationChange(index, 'relevant_coursework', e.target.value)} /><br />
-
-            <div style={{ marginTop: 6 }}>
-              <button type="button" onClick={() => addEducation()} style={{ ...addBtnStyle, marginRight: 8 }}>Add education</button>
-              {education.length > 1 && <button type="button" onClick={() => removeEducation(index)} style={removeBtnStyle}>Remove</button>}
+              <div className="FormRow">
+                <label>Institution:</label>
+                <input className="input" type="text" value={ed.institution} onChange={(e) => handleEducationChange(index, 'institution', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Major:</label>
+                <input className="input" type="text" value={ed.major} onChange={(e) => handleEducationChange(index, 'major', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Start Date:</label>
+                <input className="input" type="month" value={ed.start_date} onChange={(e) => handleEducationChange(index, 'start_date', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>End Date:</label>
+                <input className="input" type="month" value={ed.end_date} onChange={(e) => handleEducationChange(index, 'end_date', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Degree:</label>
+                <input className="input" type="text" value={ed.degree} onChange={(e) => handleEducationChange(index, 'degree', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Minor:</label>
+                <input className="input" type="text" value={ed.minor} onChange={(e) => handleEducationChange(index, 'minor', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>GPA:</label>
+                <input className="input" type="text" value={ed.gpa} onChange={(e) => handleEducationChange(index, 'gpa', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Description:</label>
+                <textarea className="textArea" value={ed.description} onChange={(e) => handleEducationChange(index, 'description', e.target.value)}></textarea><br />
+              </div>
+              <div className="FormRow">
+                <label>Relevant Coursework:</label>
+                <input className="input" type="text" value={ed.relevant_coursework} onChange={(e) => handleEducationChange(index, 'relevant_coursework', e.target.value)} /><br />
+              </div>
+              <div style={{ marginTop: 6 }}>
+                <button type="button" onClick={() => addEducation()} style={{ ...addBtnStyle, marginRight: 8 }}>Add education</button>
+                {education.length > 1 && <button type="button" onClick={() => removeEducation(index)} style={removeBtnStyle}>Remove</button>}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Volunteer Experience */}
-        <h3>Volunteer Experience</h3>
-        {volunteerExperiences.map((vol, index) => (
-          <div key={index} style={sectionBoxStyle}>
-            <label>Organization:</label>
-            <input
-              type="text"
-              name="organization"
-              value={vol.organization}
-              onChange={(e) => handleVolunteerChange(index, 'organization', e.target.value)}
-            /><br />
+        <h3 className="formHeadings">Volunteer Experience</h3>
 
-            <label>Title:</label>
-            <input
-              type="text"
-              name="volunteer_title"
-              value={vol.title}
-              onChange={(e) => handleVolunteerChange(index, 'volunteer_title', e.target.value)}
-            /><br />
+        <div className="InfoForm">
+          {volunteerExperiences.map((vol, index) => (
+            <div key={index}>
+              <div className="FormRow">
+                <label>Organization:</label>
+                <input
+                  className="input" 
+                  type="text"
+                  name="organization"
+                  value={vol.organization}
+                  onChange={(e) => handleVolunteerChange(index, 'organization', e.target.value)}
+                />
+              </div>
 
-            <label>Start Date:</label>
-            <input
-              type="month"
-              name="volunteer_start"
-              value={vol.start_date}
-              onChange={(e) => handleVolunteerChange(index, 'volunteer_start', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Title:</label>
+                <input
+                  className="input" 
+                  type="text"
+                  name="volunteer_title"
+                  value={vol.title}
+                  onChange={(e) => handleVolunteerChange(index, 'volunteer_title', e.target.value)}
+                />
+              </div>
 
-            <label>End Date:</label>
-            <input
-              type="month"
-              name="volunteer_end"
-              value={vol.end_date}
-              onChange={(e) => handleVolunteerChange(index, 'volunteer_end', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Start Date:</label>
+                <input
+                  className="input" 
+                  type="month"
+                  name="volunteer_start"
+                  value={vol.start_date}
+                  onChange={(e) => handleVolunteerChange(index, 'volunteer_start', e.target.value)}
+                />
+              </div>
 
-            <label>Description:</label>
-            <textarea
-              name="volunteer_description"
-              value={vol.description}
-              onChange={(e) => handleVolunteerChange(index, 'volunteer_description', e.target.value)}
-            ></textarea><br />
+              <div className="FormRow">
+                <label>End Date:</label>
+                <input
+                  className="input" 
+                  type="month"
+                  name="volunteer_end"
+                  value={vol.end_date}
+                  onChange={(e) => handleVolunteerChange(index, 'volunteer_end', e.target.value)}
+                />
+              </div>
 
-            <label>Location:</label>
-            <input
-              type="text"
-              name="volunteer_location"
-              value={vol.location}
-              onChange={(e) => handleVolunteerChange(index, 'volunteer_location', e.target.value)}
-            /><br />
+              <div className="FormRow">
+                <label>Description:</label>
+                <textarea
+                  className="textArea"
+                  name="volunteer_description"
+                  value={vol.description}
+                  onChange={(e) => handleVolunteerChange(index, 'volunteer_description', e.target.value)}
+                ></textarea>
+              </div>
 
-            <div style={{ marginTop: 6 }}>
-              <button
-                type="button"
-                onClick={() => removeVolunteerExperience(index)}
-                style={removeBtnStyle}
-              >
-                Remove
-              </button>
+              <div className="FormRow">
+                <label>Location:</label>
+                <input
+                  
+                  className="input" 
+                  type="text"
+                  name="volunteer_location"
+                  value={vol.location}
+                  onChange={(e) => handleVolunteerChange(index, 'volunteer_location', e.target.value)}
+                />
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <button
+                  type="button"
+                  onClick={() => removeVolunteerExperience(index)}
+                  style={removeBtnStyle}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        <button
-          type="button"
-          onClick={addVolunteerExperience}
-          style={{ ...addBtnStyle, marginBottom: '20px' }}
-        >
-          + Add Another Volunteer Experience
-        </button>
-
+          <button
+            type="button"
+            onClick={addVolunteerExperience}
+            style={{ ...addBtnStyle, marginBottom: '20px' }}
+          >
+            + Add Another Volunteer Experience
+          </button>
+        </div>
 
         {/* Awards (dynamic simple strings) */}
-        <h3>Awards</h3>
-        {awards.map((a, idx) => (
-          <div key={idx} style={{ marginBottom: 8 }}>
-            <input type="text" value={a} onChange={(e) => updateAward(idx, e.target.value)} placeholder="Award name" />
-            <button type="button" onClick={() => addAward()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add award</button>
-            {awards.length > 1 && <button type="button" onClick={() => removeAward(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
-          </div>
-        ))}
+        <h3 className="formHeadings">Awards</h3>
+        <div className="InfoForm">
+          {awards.map((a, idx) => (
+            <div key={idx} style={{ marginBottom: 8 }}>
+              <div className="FormRow">
+                <input className="input" type="text" value={a} onChange={(e) => updateAward(idx, e.target.value)} placeholder="Award name" />
+              </div>
+              <button type="button" onClick={() => addAward()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add award</button>
+              {awards.length > 1 && <button type="button" onClick={() => removeAward(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
+            </div>
+          ))}
+        </div>
 
         {/* Publications (dynamic) */}
-        <h3>Publications</h3>
-        {publications.map((p, index) => (
-          <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
-            <label>Title:</label>
-            <input type="text" value={p.title} onChange={(e) => handlePublicationChange(index, 'title', e.target.value)} /><br />
+        <h3 className="formHeadings">Publications</h3>
 
-            <label>Publisher:</label>
-            <input type="text" value={p.publisher} onChange={(e) => handlePublicationChange(index, 'publisher', e.target.value)} /><br />
+        <div className="InfoForm">
+          {publications.map((p, index) => (
+            <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
 
-            <label>Date:</label>
-            <input type="month" value={p.date} onChange={(e) => handlePublicationChange(index, 'date', e.target.value)} /><br />
+              <div className="FormRow">
+                <label>Title:</label>
+                <input className="input" type="text" value={p.title} onChange={(e) => handlePublicationChange(index, 'title', e.target.value)} />
+              </div>
 
-            <label>URL:</label>
-            <input type="url" value={p.url} onChange={(e) => handlePublicationChange(index, 'url', e.target.value)} /><br />
+              <div className="FormRow">
+                <label>Publisher:</label>
+                <input className="input" type="text" value={p.publisher} onChange={(e) => handlePublicationChange(index, 'publisher', e.target.value)} />
+              </div>
 
-            <div style={{ marginTop: 6 }}>
-              <button type="button" onClick={() => addPublication()} style={{ ...addBtnStyle, marginRight: 8 }}>Add publication</button>
-              {publications.length > 1 && <button type="button" onClick={() => removePublication(index)} style={removeBtnStyle}>Remove</button>}
+              <div className="FormRow">
+                <label>Date:</label>
+                <input className="input" type="month" value={p.date} onChange={(e) => handlePublicationChange(index, 'date', e.target.value)} />
+              </div>
+
+              <div className="FormRow">
+                <label>URL:</label>
+                <input className="input" type="url" value={p.url} onChange={(e) => handlePublicationChange(index, 'url', e.target.value)} />
+              </div>
+              <div style={{ marginTop: 6 }}>
+                <button type="button" onClick={() => addPublication()} style={{ ...addBtnStyle, marginRight: 8 }}>Add publication</button>
+                {publications.length > 1 && <button type="button" onClick={() => removePublication(index)} style={removeBtnStyle}>Remove</button>}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Certifications (dynamic strings) */}
-        <h3>Certifications</h3>
-        {certifications.map((c, idx) => (
-          <div key={idx} style={{ marginBottom: 8 }}>
-            <input type="text" value={c} onChange={(e) => updateCertification(idx, e.target.value)} placeholder="Certification name" />
-            <button type="button" onClick={() => addCertification()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add cert</button>
-            {certifications.length > 1 && <button type="button" onClick={() => removeCertification(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
-          </div>
-        ))}
+        <h3 className="formHeadings">Certifications</h3>
 
-        {/* References (dynamic) */}
-        <h3>References</h3>
-        {references.map((r, index) => (
-          <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
-            <label>Name:</label>
-            <input type="text" value={r.name} onChange={(e) => handleReferenceChange(index, 'name', e.target.value)} /><br />
-
-            <label>Title:</label>
-            <input type="text" value={r.title} onChange={(e) => handleReferenceChange(index, 'title', e.target.value)} /><br />
-
-            <label>Company:</label>
-            <input type="text" value={r.company} onChange={(e) => handleReferenceChange(index, 'company', e.target.value)} /><br />
-
-            <label>Mobile:</label>
-            <input type="tel" value={r.mobile} onChange={(e) => handleReferenceChange(index, 'mobile', e.target.value)} /><br />
-
-            <label>Email:</label>
-            <input type="email" value={r.email} onChange={(e) => handleReferenceChange(index, 'email', e.target.value)} /><br />
-
-            <label>Organization:</label>
-            <input type="text" value={r.organization} onChange={(e) => handleReferenceChange(index, 'organization', e.target.value)} /><br />
-
-            <label>Phone:</label>
-            <input type="tel" value={r.phone} onChange={(e) => handleReferenceChange(index, 'phone', e.target.value)} /><br />
-
-            <div style={{ marginTop: 6 }}>
-              <button type="button" onClick={() => addReference()} style={{ ...addBtnStyle, marginRight: 8 }}>Add reference</button>
-              {references.length > 1 && <button type="button" onClick={() => removeReference(index)} style={removeBtnStyle}>Remove</button>}
+        <div className="InfoForm">
+          {certifications.map((c, idx) => (
+            <div key={idx} style={{ marginBottom: 8 }}>
+              <input className="input" type="text" value={c} onChange={(e) => updateCertification(idx, e.target.value)} placeholder="Certification name" />
+              <button type="button" onClick={() => addCertification()} style={{ ...addBtnStyle, marginLeft: 8 }}>Add Certificate</button>
+              {certifications.length > 1 && <button type="button" onClick={() => removeCertification(idx)} style={{ ...removeBtnStyle, marginLeft: 6 }}>Remove</button>}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        {/* References (dynamic) */}
+        <h3 className="formHeadings">References</h3>
 
+        <div className="InfoForm">
+          {references.map((r, index) => (
+            <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
+
+              <div className="FormRow">
+                <label>Name:</label>
+                <input className="input" type="text" value={r.name} onChange={(e) => handleReferenceChange(index, 'name', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Title:</label>
+                <input className="input" type="text" value={r.title} onChange={(e) => handleReferenceChange(index, 'title', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Company:</label>
+                <input className="input" type="text" value={r.company} onChange={(e) => handleReferenceChange(index, 'company', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Mobile:</label>
+                <input className="input" type="tel" value={r.mobile} onChange={(e) => handleReferenceChange(index, 'mobile', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Email:</label>
+                <input className="input" type="email" value={r.email} onChange={(e) => handleReferenceChange(index, 'email', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Organization:</label>
+                <input className="input" type="text" value={r.organization} onChange={(e) => handleReferenceChange(index, 'organization', e.target.value)} /><br />
+              </div>
+              <div className="FormRow">
+                <label>Phone:</label>
+                <input className="input" type="tel" value={r.phone} onChange={(e) => handleReferenceChange(index, 'phone', e.target.value)} /><br />
+              </div>
+              <div style={{ marginTop: 6 }}>
+                <button type="button" onClick={() => addReference()} style={{ ...addBtnStyle, marginRight: 8 }}>Add reference</button>
+                {references.length > 1 && <button type="button" onClick={() => removeReference(index)} style={removeBtnStyle}>Remove</button>}
+              </div>
+            </div>
+          ))}
+        </div>
         <br />
         <button type="submit" style={submitBtnStyle}>Submit</button>
       </form>

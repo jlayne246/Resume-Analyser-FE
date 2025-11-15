@@ -299,25 +299,93 @@ body {
   }
 }
 
-.pInfoForm{
+form{
 
-  display: flex;
-  flex-direction: column;
-  border-color: #ff00f2;
-  border-width: medium;
-  border-style: solid;
-  justify-content: space-around;
+  max-width: 720px;
+  height: fit-content;
+  margin: 20px auto 20px;
+  background: #1b4965;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
 
 }
 
-.pInfoFormRow{
+.formHeadings{
+
+  color: #fff;
+
+}
+
+.InfoForm{
 
   display: flex;
-  flex-direction: row;
-  border-color: #00ff37;
-  border-width: medium;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 520px;
+  height: auto;
+  margin: auto;
+  background: #468faf;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+
+}
+
+.FormRow{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 275px;
+  height: auto;
+  margin: 10px;
+
+}
+
+.input{
+
+  border-color: #1b4965;
   border-style: solid;
-  width: 500px;
+  border-width: thin;
+  border-radius: 5px;
+
+}
+
+.textArea{
+
+  border-color: #1b4965;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 5px;
+  min-height: 100px;
+  min-width: 275px;
+
+}
+
+.input:focus{
+
+  border-color: #1b652b;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 5px;
+
+}
+
+label{
+
+  color: #fff;
+
+}
+
+input{
+
+  width: 250px;
+
 }
 
 .job-wrapper {
