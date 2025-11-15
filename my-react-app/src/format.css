@@ -312,7 +312,7 @@ form{
 
 }
 
-.formHeadings{
+.formHeadings, p{
 
   color: #fff;
 
@@ -389,16 +389,21 @@ input{
 }
 
 .job-wrapper {
-  display: flex;
+
   justify-content: center;
   align-items: center;
   height: 75vh;
+
 }
 
 .job-card {
-  background: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  background: #468faf;
   padding: 40px 50px;
   border-radius: 20px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   width: 700px;
   height: 500px;
@@ -407,14 +412,14 @@ input{
 .subtitle {
   margin: 0;
   font-size: 30px;
-  color: #333;
+  color: #fff;
 }
 
 .question {
   margin-top: 15px;
   font-size: 40px;
   font-weight: 700;
-  color: #000;
+  color: #fff;
 }
 
 .job-input {
@@ -431,9 +436,67 @@ input{
   margin-top: 30px;
   padding: 12px 24px;
   font-size: 25px;
-  background-color: #007aff;
+  background-color: #1b4965;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
+
+
+
+.results-container{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-color: #fbff00;
+  border-width: medium;
+  border-style: solid;
+  height: 100%;
+
+}
+
+.results-Card {
+  display: flex;
+  flex-direction: column;
+  background: #468faf;
+  padding: 40px 50px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  height: auto;
+}
+
+.results-Card-Outer {
+
+  display: flex;
+  flex-direction: column;
+  background: #1b4965;
+  padding: 20px 40px;
+  margin: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  width: 80%;
+
+}
+
+.field-block{
+
+  border-radius: 20px;
+  border-color: #1b4965;
+  border-style: solid;
+  max-width: 85%;
+  min-width: 60%;
+  height: auto;
+  margin: 20px;
+  padding: 10px 10px;
+}
+
+

@@ -47,49 +47,54 @@ function Results() {
 
   return (
     <div className="results-container">
-      <h1>Recommendations</h1><br></br>
-      <h2>Score: {score} / 10</h2>
+
+      <div className="results-Card-Outer">
+      <h1 className="formHeadings">Recommendations</h1><br></br>
+
+      <div className="results-Card">
+      <h2 className="formHeadings">Score: {score}</h2>
 
       <div className="field-block">
-        <h2>Personal</h2>
+        <h2 className="formHeadings">Personal</h2>
         <p>{recommendation.personal_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Summary</h2>
+        <h2 className="formHeadings">Summary</h2>
         <p>{recommendation.summary_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Skills</h2>
+        <h2 className="formHeadings">Skills</h2>
         <p>{recommendation.skill_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Work Experience</h2>
+        <h2 className="formHeadings">Work Experience</h2>
         <p>{recommendation.work_experience_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Education</h2>
+        <h2 className="formHeadings">Education</h2>
         <p>{recommendation.education_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Volunteer Experience</h2>
+        <h2 className="formHeadings">Volunteer Experience</h2>
         <p>{recommendation.volunteer_experience_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Recognition</h2>
+        <h2 className="formHeadings">Recognition</h2>
         <p>{recommendation.recognition_recommendation}</p>
       </div>
 
       <div className="field-block">
-        <h2>Reference</h2>
+        <h2 className="formHeadings">Reference</h2>
         <p>{recommendation.reference_recommendation}</p>
       </div>
-
+    </div>
+    </div>
     </div>
   );
 }
