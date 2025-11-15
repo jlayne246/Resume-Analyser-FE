@@ -52,7 +52,7 @@ function Results() {
       <h1 className="formHeadings">Recommendations</h1><br></br>
 
       <div className="results-Card">
-      <h2 className="formHeadings">Score: {score}</h2>
+      <h2 className="formHeadings">Score: {score} / 10</h2>
 
       <div className="field-block">
         <h2 className="formHeadings">Personal</h2>
