@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { retrieveCVData, updateCV } from '../api/api';
+import { useNavigate } from "react-router-dom";
 
 function UserForm() {
   const [cvData, setCvData] = useState(null);
@@ -48,6 +49,8 @@ function UserForm() {
   const [references, setReferences] = useState([
     { name: '', title: '', company: '', mobile: '', email: '', organization: '', phone: '' },
   ]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCVData = async () => {
@@ -355,6 +358,7 @@ function UserForm() {
       const response = await updateCV(output);
       console.log('CV updated successfully:', response);
       alert('CV updated successfully.');
+      navigate('/job');
     } catch (error) {
       console.error('Error parsing CV:', error);
       alert('Failed to update CV. Please try again.');
