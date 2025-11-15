@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import UploadCV from './pages/UploadCV';
 import About from './pages/About';
 import UserForm from "./pages/UserForm";
+import Results from "./pages/Results";
+import JobSelection from "./pages/JobSelection";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
               <Route path="/upload" element={<UploadCV />} />
               <Route path="/about" element={<About />} />
               <Route path="/user" element={<UserForm />} />
+              <Route path="/results" element={<Results />} />
+              <Route path="/job" element={<JobSelection />} />
             </Routes>
           </div>
         </div>
