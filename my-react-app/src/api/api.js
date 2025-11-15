@@ -49,3 +49,33 @@ export async function updateCV(data) {
 
     return response.json();
 }
+
+export async function submitDreamJob(career) {
+    const formData = new FormData();
+    formData.append('job', career);
+    
+    const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/feedback/generate`, {
+        method: 'POST',
+        body: formData,
+        credentials: "include",
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to submit dream job');
+    }
+
+    return response.json();
+}
+
+export async function getRecommendations() {
+    const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/feedback/get`, {
+        method: 'GET',
+        credentials: "include",
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to get recommendations');
+    }
+
+    return response.json();
+}
