@@ -394,27 +394,54 @@ function UserForm() {
     <div className="userform-page">
       <form className="user-form" onSubmit={handleSubmit}>
         <h2>Personal Information</h2>
-        <label>First Name:</label>
-        <input type="text" name="first_name" value={cvData?.first_name || ''} onChange={handleFieldChange} /><br />
+        <div className="pInfoForm"> 
 
-        <label>Last Name:</label>
-        <input type="text" name="last_name" value={cvData?.last_name || ''} onChange={handleFieldChange} /><br />
+          <div className="pInfoFormRow">
+            <label>First Name:</label>
+            <input type="text" name="first_name" value={cvData?.first_name || ''} onChange={handleFieldChange} />
+          </div>
+          <br />
 
-        <label>Email:</label>
-        <input type="email" name="email" value={cvData?.email || ''} onChange={handleFieldChange} /><br />
+          <div className="pInfoFormRow">
+            <label>Last Name:</label>
+            <input type="text" name="last_name" value={cvData?.last_name || ''} onChange={handleFieldChange} />
+          </div>
+          <br />
 
-        <label>Phone:</label>
-        <input type="tel" name="phone" value={cvData?.phone || ''} onChange={handleFieldChange} /><br />
+          <div className="pInfoFormRow">
+            <label>Email:</label>
+            <input type="email" name="email" value={cvData?.email || ''} onChange={handleFieldChange} />
+          </div>
+          <br />
 
-        <label>Address:</label>
-        <input type="text" name="address" value={cvData?.address || ''} onChange={handleFieldChange} /><br />
+          <div className="pInfoFormRow">
+            <label>Phone:</label>
+            <input type="tel" name="phone" value={cvData?.phone || ''} onChange={handleFieldChange} />
+          </div>
+          <br />
 
-        <label>Objective:</label>
-        <textarea name="objective" value={cvData?.objective || ''} onChange={handleFieldChange}></textarea><br />
+          <div className="pInfoFormRow">
+            <label>Address:</label>
+            <input type="text" name="address" value={cvData?.address || ''} onChange={handleFieldChange} />
+          </div>
+          <br />
 
-        <label>Summary:</label>
-        <textarea name="summary" value={cvData?.summary || ''} onChange={handleFieldChange}></textarea><br />
+          <div className="pInfoFormRow">
+            <label>Objective:</label>
+            <textarea name="objective" value={cvData?.objective || ''} onChange={handleFieldChange}></textarea>
+          </div>
+          <br />
 
+          <div className="pInfoFormRow">
+            <label>Summary:</label>
+            <textarea name="summary" value={cvData?.summary || ''} onChange={handleFieldChange}></textarea>
+          </div>
+          <br />
+        </div>
+
+        <div className="pInfo">
+        </div>
+        
         <h3>Links</h3>
         <label>LinkedIn:</label>
         <input type="url" name="linkedin" value={cvData?.links?.linkedin || ''} onChange={(e) =>
@@ -467,9 +494,10 @@ function UserForm() {
         /><br />
 
         {/* Work Experience */}
-        <h3>Work Experience</h3>
+        
         {workExperiences.map((exp, index) => (
           <div key={index} style={sectionBoxStyle}>
+            <h3>Work Experience</h3>
             <label>Company:</label>
             <input
               type="text"

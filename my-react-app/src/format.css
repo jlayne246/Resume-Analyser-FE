@@ -298,3 +298,27 @@ body {
     width: 120px;
   }
 }
+
+/* --- User Form page layout --- */
+
+.pInfoForm{
+
+  display: flex;
+  flex-direction: column;
+  border-color: #ff00f2;
+  border-width: medium;
+  border-style: solid;
+  justify-content: space-around;
+
+}
+
+.pInfoFormRow{
+
+  display: flex;
+  flex-direction: row;
+  border-color: #00ff37;
+  border-width: medium;
+  border-style: solid;
+  width: 500px;
+
+}
