@@ -62,8 +62,7 @@ header {
   border-width: medium;
   border-color: #62b6cb;
 
-  height: 100hv;
-  min-height: 100hv;
+  height: fit-content;
   background-image: url("./Background.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -81,8 +80,9 @@ header {
   display: flex;
   flex-direction: column;
 
-  align-content: center;
-  width: 1200px;
+  justify-content: center;
+  align-items: center;
+  width: 78vw;
   min-height: 100vh;
   height: 100%;
   margin: auto;
@@ -221,6 +221,9 @@ body {
   margin: 10%;
   padding: 0 24px;
   text-align: left;
+  border-color: #fbff00;
+  border-width: medium;
+  border-style: solid;
   /* headings/paragraphs align left like your mock */
 }
 
