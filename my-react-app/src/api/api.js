@@ -71,7 +71,7 @@ export async function submitDreamJob(career) {
 }
 
 export async function getRecommendations() {
-    const response = await fetch(`${process.env.REACT_APP_PROD_BACKEND_URL}/api/feedback/get`, {
+    const response = await fetch(`${process.env.REACT_APP_LOCAL_BACKEND_URL}/api/feedback/get`, {
         method: 'GET',
         credentials: "include",
     });

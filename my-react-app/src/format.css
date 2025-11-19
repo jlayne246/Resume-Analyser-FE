@@ -1,34 +1,49 @@
-#img-title {
+/* Global reset for better responsive behavior */
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  align-content: center;
+  text-align: center;
+  /*border-color: #fbff00;
+  border-width: medium;
+  border-style: solid;*/
+  height: 100vh;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------ */
+
+#img-title {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   width: 300px;
-
 }
 
 .logo {
-
   width: 100px;
   height: 100px;
   border-radius: 100%;
   background-color: #fff;
-
 }
 
 #HeaderButtons {
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   width: 400px;
-
+  flex-wrap: wrap; /* allow wrapping on smaller widths */
 }
 
 .navButtons {
-
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -39,39 +54,58 @@
 }
 
 header {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   /*border-style: solid;
   border-width: medium;
   border-color: #1900ff;*/
   background-color: #5fa8d3;
-  padding: 20px;
-
+  padding: 16px 20px;
+  gap: 16px;
 }
 
-#Body {
+/* Header: stack logo + buttons on mobile */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  #img-title,
+  #HeaderButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navButtons {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   BODY + MAIN CONTAINER
+------------------------------------------------------------------ */
+
+#Body {
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
-
   /*border-style: solid;
   border-width: medium;
   border-color: #62b6cb;*/
-
-  height: fit-content;
+  min-height: 100vh;
   background-image: url("./Background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-
 }
 
 #Main {
-
   border-style: solid;
   border-width: medium;
   border-color: black;
@@ -79,15 +113,28 @@ header {
 
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-  width: 78vw;
-  min-height: 100vh;
-  height: 100%;
-  margin: auto;
 
+  width: 78vw;
+  max-width: 1100px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 24px 16px;
 }
+
+/* Make main column breathe on mobile */
+@media (max-width: 768px) {
+  #Main {
+    width: 95vw;
+    border-width: thin;
+    padding: 16px 10px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   BUTTONS
+------------------------------------------------------------------ */
 
 .btn {
   display: inline-block;
@@ -112,20 +159,10 @@ header {
   transform: translateY(1px);
 }
 
-body {
+/* ------------------------------------------------------------------
+   UPLOAD PAGE
+------------------------------------------------------------------ */
 
-  align-content: center;
-  text-align: center;
-  /*border-color: #fbff00;
-  border-width: medium;
-  border-style: solid;*/
-  margin: 0;
-  height: 100hv;
-  min-height: 100hv;
-
-}
-
-/* --- Upload page layout --- */
 .upload-page {
   width: 100%;
 }
@@ -133,26 +170,22 @@ body {
 .upload-bg {
   background: none;
   padding: 0;
-  /* remove padding so white box can expand fully */
 }
 
 .page-track {
   width: 100%;
   margin: 0 auto;
   border-left: none;
-  /* remove borders if you want clean full-width white area */
   border-right: none;
   padding: 40px 24px 60px;
   box-sizing: border-box;
 }
-
 
 /* blue card */
 .upload-card {
   max-width: 520px;
   margin: 0 auto 56px;
   background: #468faf;
-  /* blue like your mockup */
   border-radius: 12px;
   padding: 28px 20px 32px;
   text-align: center;
@@ -198,7 +231,7 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
 }
 
-/* responsive */
+/* responsive upload info */
 @media (max-width: 680px) {
   .upload-info {
     grid-template-columns: 1fr;
@@ -210,21 +243,18 @@ body {
   }
 }
 
+/* ------------------------------------------------------------------
+   HOME PAGE
+------------------------------------------------------------------ */
 
-
-
-
-/* --- Home page layout --- */
 .home-wrap {
   max-width: 950px;
-  /* keeps the text within your white column */
-  margin: 10%;
+  margin: 40px auto;
   padding: 0 24px;
   text-align: left;
   /*border-color: #fbff00;
   border-width: medium;
   border-style: solid;*/
-  /* headings/paragraphs align left like your mock */
 }
 
 .home-row {
@@ -233,18 +263,16 @@ body {
   justify-content: space-evenly;
   gap: 24px;
   min-height: 240px;
-  /* generous vertical spacing */
-  margin: 5%;
-  justify-content: space-around;
+  margin: 5% 0;
   background-color: #468faf;
   border-radius: 12px;
   padding: 28px 20px 32px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+ 
 }
 
 .home-row.reverse {
-  grid-template-columns: 220px 1fr;
-  /* icon | text */
+  grid-template-columns: 1fr; /* icon | text flipped */
 }
 
 .home-title {
@@ -261,7 +289,6 @@ body {
 }
 
 .home-icon {
-
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -269,41 +296,44 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 100%;
-  
 }
 
 .home-icon img {
   width: 160px;
-  /* scale to taste */
   height: auto;
   opacity: 0.9;
 }
 
-.home-row.reverse .home-icon {
-  align-items: center;
-  /* visually centered like your mid-left gear icon */
-}
-
+/* Home: stack icon + text nicely on small screens */
 @media (max-width: 720px) {
-
   .home-row,
   .home-row.reverse {
-    grid-template-columns: 1fr;
-    /* stack on mobile */
+    flex-direction: column;
+    text-align: center;
   }
 
   .home-icon {
-    justify-content: flex-start;
-    /* keep icon near text when stacked */
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 150px;
+    height: 150px;
   }
 
   .home-icon img {
     width: 120px;
   }
+
+  .home-wrap {
+    padding: 0 16px;
+    margin: 24px auto;
+  }
 }
 
-form{
+/* ------------------------------------------------------------------
+   FORMS
+------------------------------------------------------------------ */
 
+form {
   max-width: 720px;
   height: fit-content;
   margin: 20px auto 20px;
@@ -312,22 +342,20 @@ form{
   padding: 20px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
-
 }
 
-.formHeadings, p{
-
+.formHeadings,
+p {
   color: #fff;
-
 }
 
-.InfoForm{
-
+.InfoForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   max-width: 520px;
+  width: 100%;
   height: auto;
   margin: auto;
   background: #468faf;
@@ -335,67 +363,78 @@ form{
   padding: 20px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
-
 }
 
-.FormRow{
-
+.FormRow {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 275px;
+  max-width: 100%;
   height: auto;
   margin: 10px;
-
 }
 
-.input{
-
+.input {
   border-color: #1b4965;
   border-style: solid;
   border-width: thin;
   border-radius: 5px;
-
 }
 
-.textArea{
-
+.textArea {
   border-color: #1b4965;
   border-style: solid;
   border-width: thin;
   border-radius: 5px;
   min-height: 100px;
   min-width: 275px;
-
+  width: 100%;
 }
 
-.input:focus{
-
+.input:focus {
   border-color: #1b652b;
   border-style: solid;
   border-width: thin;
   border-radius: 5px;
-
 }
 
-label{
-
+label {
   color: #fff;
-
 }
 
-input{
-
+input {
   width: 250px;
-
+  max-width: 100%;
 }
+
+/* Form adjustments on small screens */
+@media (max-width: 480px) {
+  .FormRow {
+    width: 100%;
+  }
+
+  .textArea {
+    min-width: 100%;
+  }
+
+  form {
+    margin: 16px auto;
+    padding: 16px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   JOB PAGE / PROMPT CARD
+------------------------------------------------------------------ */
 
 .job-wrapper {
-
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 75vh;
+  min-height: 75vh;
+  padding: 24px 16px;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -410,7 +449,8 @@ input{
   align-items: center;
   text-align: center;
   width: 40%;
-  height: 50%;
+  max-width: 520px;
+  min-width: 280px;
 }
 
 .subtitle {
@@ -428,7 +468,8 @@ input{
 
 .job-input {
   width: 50%;
-  height: 5%;
+  max-width: 320px;
+  height: 40px;
   margin-top: 20px;
   border-radius: 5px;
   border: none;
@@ -447,10 +488,27 @@ input{
   cursor: pointer;
 }
 
+/* mobile tweaks for job card */
+@media (max-width: 768px) {
+  .job-card {
+    width: 100%;
+    padding: 24px 20px;
+  }
 
+  .job-input {
+    width: 100%;
+  }
 
-.results-container{
+  .question {
+    font-size: 24px;
+  }
+}
 
+/* ------------------------------------------------------------------
+   RESULTS
+------------------------------------------------------------------ */
+
+.results-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -458,8 +516,9 @@ input{
   border-color: #fbff00;
   border-width: medium;
   border-style: solid;
-  height: 100%;
-
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .results-Card {
@@ -472,11 +531,11 @@ input{
   align-items: center;
   text-align: center;
   width: 80%;
+  max-width: 960px;
   height: auto;
 }
 
 .results-Card-Outer {
-
   display: flex;
   flex-direction: column;
   background: #1b4965;
@@ -488,11 +547,10 @@ input{
   text-align: center;
   height: auto;
   width: 80%;
-
+  max-width: 960px;
 }
 
-.field-block{
-
+.field-block {
   border-radius: 20px;
   border-color: #1b4965;
   border-style: solid;
@@ -501,4 +559,18 @@ input{
   height: auto;
   margin: 20px;
   padding: 10px 10px;
+}
+
+/* Results layout on small screens */
+@media (max-width: 768px) {
+  .results-Card,
+  .results-Card-Outer {
+    width: 100%;
+    padding: 24px 16px;
+  }
+
+  .field-block {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
