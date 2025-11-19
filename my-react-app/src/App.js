@@ -17,7 +17,7 @@ function App() {
         <header>
           <div id="img-title">
             <Link to="/"><img className="logo" src={logo} alt="logo" /></Link>
-            <p className="title">Project Title</p>
+            <p className="title">CVese Improvements</p>
           </div>
           <div id="HeaderButtons">
             <Link to="/upload"><button className="btn primary">Upload CV</button></Link>
