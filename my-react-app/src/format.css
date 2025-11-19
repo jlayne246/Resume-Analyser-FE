@@ -43,9 +43,9 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-style: solid;
+  /*border-style: solid;
   border-width: medium;
-  border-color: #1900ff;
+  border-color: #1900ff;*/
   background-color: #5fa8d3;
   padding: 20px;
 
@@ -58,9 +58,9 @@ header {
   align-content: center;
   align-items: center;
 
-  border-style: solid;
+  /*border-style: solid;
   border-width: medium;
-  border-color: #62b6cb;
+  border-color: #62b6cb;*/
 
   height: fit-content;
   background-image: url("./Background.png");
@@ -116,9 +116,9 @@ body {
 
   align-content: center;
   text-align: center;
-  border-color: #fbff00;
+  /*border-color: #fbff00;
   border-width: medium;
-  border-style: solid;
+  border-style: solid;*/
   margin: 0;
   height: 100hv;
   min-height: 100hv;
@@ -221,9 +221,9 @@ body {
   margin: 10%;
   padding: 0 24px;
   text-align: left;
-  border-color: #fbff00;
+  /*border-color: #fbff00;
   border-width: medium;
-  border-style: solid;
+  border-style: solid;*/
   /* headings/paragraphs align left like your mock */
 }
 
