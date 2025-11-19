@@ -396,7 +396,8 @@ input{
   justify-content: center;
   align-items: center;
   height: 75vh;
-
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .job-card {
