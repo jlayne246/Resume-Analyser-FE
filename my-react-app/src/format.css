@@ -448,8 +448,7 @@ input {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 40%;
-  max-width: 520px;
+  width: 1000px;
   min-width: 280px;
 }
 
@@ -513,9 +512,9 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-color: #fbff00;
+  /*border-color: #fbff00;
   border-width: medium;
-  border-style: solid;
+  border-style: solid;*/
   width: 100%;
   padding: 16px;
   box-sizing: border-box;

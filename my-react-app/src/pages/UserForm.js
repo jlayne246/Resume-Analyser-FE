@@ -512,7 +512,7 @@ function UserForm() {
         <h3 className="formHeadings">Work Experience</h3>
         <div className="InfoForm">
           {workExperiences.map((exp, index) => (
-            <div key={index} style={sectionBoxStyle}>
+            <div>
 
               <div className="FormRow">
                 <label>Company:</label>
@@ -604,7 +604,7 @@ function UserForm() {
         <h3 className="formHeadings">Education</h3>
         <div className="InfoForm">
           {education.map((ed, index) => (
-            <div key={index} style={sectionBoxStyle}>
+            <div>
 
               <div className="FormRow">
                 <label>Institution:</label>
@@ -762,7 +762,7 @@ function UserForm() {
 
         <div className="InfoForm">
           {publications.map((p, index) => (
-            <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
+            <div>
 
               <div className="FormRow">
                 <label>Title:</label>
@@ -808,7 +808,7 @@ function UserForm() {
 
         <div className="InfoForm">
           {references.map((r, index) => (
-            <div key={index} style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10, borderRadius: 8 }}>
+            <div>
 
               <div className="FormRow">
                 <label>Name:</label>
