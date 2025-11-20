@@ -672,9 +672,9 @@ function UserForm() {
                 <input
                   className="input" 
                   type="text"
-                  name="volunteer_title"
+                  name="title"
                   value={vol.title}
-                  onChange={(e) => handleVolunteerChange(index, 'volunteer_title', e.target.value)}
+                  onChange={(e) => handleVolunteerChange(index, 'title', e.target.value)}
                 />
               </div>
 
@@ -683,9 +683,9 @@ function UserForm() {
                 <input
                   className="input" 
                   type="month"
-                  name="volunteer_start"
+                  name="start_date"
                   value={vol.start_date}
-                  onChange={(e) => handleVolunteerChange(index, 'volunteer_start', e.target.value)}
+                  onChange={(e) => handleVolunteerChange(index, 'start_date', e.target.value)}
                 />
               </div>
 
@@ -694,9 +694,9 @@ function UserForm() {
                 <input
                   className="input" 
                   type="month"
-                  name="volunteer_end"
+                  name="end_date"
                   value={vol.end_date}
-                  onChange={(e) => handleVolunteerChange(index, 'volunteer_end', e.target.value)}
+                  onChange={(e) => handleVolunteerChange(index, 'end_date', e.target.value)}
                 />
               </div>
 
@@ -704,9 +704,9 @@ function UserForm() {
                 <label>Description:</label>
                 <textarea
                   className="textArea"
-                  name="volunteer_description"
+                  name="description"
                   value={vol.description}
-                  onChange={(e) => handleVolunteerChange(index, 'volunteer_description', e.target.value)}
+                  onChange={(e) => handleVolunteerChange(index, 'description', e.target.value)}
                 ></textarea>
               </div>
 
@@ -716,9 +716,9 @@ function UserForm() {
                   
                   className="input" 
                   type="text"
-                  name="volunteer_location"
+                  name="location"
                   value={vol.location}
-                  onChange={(e) => handleVolunteerChange(index, 'volunteer_location', e.target.value)}
+                  onChange={(e) => handleVolunteerChange(index, 'location', e.target.value)}
                 />
               </div>
 

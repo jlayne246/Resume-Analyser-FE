@@ -5,16 +5,20 @@ import { submitDreamJob } from '../api/api';
 function JobSelection() {
 
   const [career, setCareer] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await submitDreamJob(career);
       console.log('Dream job submitted:', career);
       navigate('/results');
     } catch (error) {
       console.error('Error submitting dream job:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,6 +42,12 @@ function JobSelection() {
         <button type="submit" className="job-button">
           Generate Feedback
         </button>
+
+        {loading && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
+      )}
       </form>
     </div>
   );
