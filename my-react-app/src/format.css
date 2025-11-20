@@ -448,8 +448,7 @@ input {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 40%;
-  max-width: 520px;
+  width: 1000px;
   min-width: 280px;
 }
 
